@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+
+{% block main %}
+
+<form action='' method="POST">
+  {% csrf_token %}
+  <div class="card">
+      <div class="card-header">
+        Featured
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{detail.title}}</h5>
+        <p class="card-text">{{detail.content}}</p>
+        <a href="#" class="btn btn-primary" style="float: right; margin: 2px;">삭제</a>
+        <a href="{{detail.id}}/edit" class="btn btn-primary" style="float: right; margin: 2px;">수정</a>
+      </div>
+  </div>
+  
+  <div class="input-group mb-3">
+      <input name="content" type="text" class="form-control" placeholder="댓글을 작성하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
+      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">작성</button>
+  </div>
+
+</form>
+
+<div>
+    <ol class="list-group">
+    {% for ct in comment %}
+    <li class="list-group-item">{{ct.content}}</li>
+    {% endfor %}
+    </ol>
+</div>
+
+{% endblock %}
+
+<!-- {% url "board:detail" %} -->
